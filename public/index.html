@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="PeopleFirst employee management workspace">
+  <title>PeopleFirst — Employee Management</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/responsive.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="PeopleFirst dashboard">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4.3c-4 0-7.2 3.2-7.2 7.2s3.2 7.2 7.2 7.2 7.2-3.2 7.2-7.2S20 4.3 16 4.3Zm0 17.2c-5.5 0-10 2.8-10 6.2h20c0-3.4-4.5-6.2-10-6.2Z"/><path d="m23 8 2 2 4-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-copy"><strong>PeopleFirst</strong><small>EMPLOYEE MANAGEMENT</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#dashboard" data-view="dashboard"><span class="nav-icon">◫</span>Dashboard</a>
+        <a class="nav-item" href="#employees" data-view="employees"><span class="nav-icon">♧</span>Employees<span class="nav-count" id="navEmployeeCount">0</span></a>
+        <a class="nav-item" href="#departments" data-view="departments"><span class="nav-icon">▦</span>Departments</a>
+        <a class="nav-item" href="#attendance" data-view="attendance"><span class="nav-icon">◷</span>Attendance</a>
+        <a class="nav-item" href="#leave" data-view="leave"><span class="nav-icon">▣</span>Leave management</a>
+        <a class="nav-item" href="#performance" data-view="performance"><span class="nav-icon">⌁</span>Performance</a>
+        <a class="nav-item" href="#payroll" data-view="payroll"><span class="nav-icon">＄</span>Payroll</a>
+        <a class="nav-item" href="#reports" data-view="reports"><span class="nav-icon">▤</span>Reports</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="nav-label sidebar-tools-label">PREFERENCES</div>
+        <button class="nav-item secondary-nav" id="helpButton" type="button"><span class="nav-icon">?</span>Help &amp; Support</button>
+        <button class="nav-item secondary-nav" id="settingsButton" type="button"><span class="nav-icon">⚙</span>Settings</button>
+        <div class="owner-menu-anchor sidebar-owner-menu">
+          <button class="profile-button" type="button" data-profile-toggle aria-haspopup="menu" aria-controls="sidebarOwnerMenu" aria-expanded="false" aria-label="Open Vedant Pokale administrator menu">
+            <span class="avatar avatar-admin">VP<span class="online-indicator"></span></span><span class="profile-copy"><strong>Vedant Pokale</strong><small>System Administrator</small></span><span class="profile-more">···</span>
+          </button>
+          <div class="owner-menu" id="sidebarOwnerMenu" role="menu" aria-label="Administrator menu" data-owner-menu hidden>
+            <div class="owner-menu-heading"><span class="avatar avatar-admin">VP</span><span><strong>Vedant Pokale</strong><small>System Administrator</small></span></div>
+            <button type="button" role="menuitem" data-owner-action="profile">My Profile</button><button type="button" role="menuitem" data-owner-action="account">Account Settings</button><button type="button" role="menuitem" data-owner-action="system">System Settings</button><button type="button" role="menuitem" data-owner-action="help">Help &amp; Support</button><div class="owner-menu-divider"></div><button class="owner-logout" type="button" role="menuitem" data-owner-action="logout">Log out</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-separator">/</span><strong id="breadcrumbTitle">Dashboard</strong></div>
+        <label class="global-search"><span class="search-glyph">⌕</span><input id="globalSearch" type="search" placeholder="Search employees, departments..." autocomplete="off" aria-label="Search employees and departments"><kbd>⌘ K</kbd></label>
+        <div class="topbar-actions"><span class="today-label" id="todayLabel"></span><button class="icon-button notification-button" id="notificationButton" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><i></i></button><div class="owner-menu-anchor top-owner-menu"><button class="topbar-avatar" type="button" data-profile-toggle aria-haspopup="menu" aria-controls="topOwnerMenu" aria-expanded="false" aria-label="Open Vedant Pokale profile menu">VP</button><div class="owner-menu" id="topOwnerMenu" role="menu" aria-label="Administrator menu" data-owner-menu hidden><div class="owner-menu-heading"><span class="avatar avatar-admin">VP</span><span><strong>Vedant Pokale</strong><small>System Administrator</small></span></div><button type="button" role="menuitem" data-owner-action="profile">My Profile</button><button type="button" role="menuitem" data-owner-action="account">Account Settings</button><button type="button" role="menuitem" data-owner-action="system">System Settings</button><button type="button" role="menuitem" data-owner-action="help">Help &amp; Support</button><div class="owner-menu-divider"></div><button class="owner-logout" type="button" role="menuitem" data-owner-action="logout">Log out</button></div></div></div>
+      </header>
+
+      <section class="view-panel active" id="dashboardView" data-panel="dashboard">
+        <div class="page-heading dashboard-heading">
+          <div><div class="eyebrow"><span class="live-dot"></span> PEOPLE OPERATIONS</div><h1>Welcome back, Vedant <span class="wave">👋</span></h1><p class="page-subtitle">Here's what's happening across your organization today.</p><div class="heading-meta"><span id="fullDate"></span><span class="meta-divider">·</span><span class="org-active"><i></i>System operational</span></div></div>
+          <button class="button button-primary" id="addEmployeeButton" type="button"><span class="button-plus">＋</span> Add employee</button>
+        </div>
+
+        <section class="stats-grid" aria-label="Employee management KPIs">
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">TOTAL EMPLOYEES</span><span class="stat-icon">♧</span></div><div class="stat-value" id="totalEmployees">—</div><div class="stat-foot"><span class="trend-up">↗ 12.5%</span><span class="stat-note">from last month</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">ACTIVE EMPLOYEES</span><span class="stat-icon">◉</span></div><div class="stat-value" id="activeEmployees">—</div><div class="stat-foot"><span class="stat-status"><i class="mini-dot green-dot"></i>Currently working</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">DEPARTMENTS</span><span class="stat-icon">▦</span></div><div class="stat-value" id="departmentTotal">—</div><div class="stat-foot"><span class="stat-note">Across organization</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">ON LEAVE</span><span class="stat-icon">◷</span></div><div class="stat-value" id="onLeaveEmployees">—</div><div class="stat-foot"><span class="stat-status">Currently unavailable</span></div></article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="panel overview-panel" aria-labelledby="overviewTitle">
+            <div class="panel-heading"><div><span class="section-kicker">WORKFORCE</span><h2 id="overviewTitle">Employee overview</h2><p>Team growth and employee activity over time.</p></div><label class="period-select"><span class="sr-only">Chart period</span><select id="chartPeriod"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">3 months</option><option value="365">1 year</option></select><span>⌄</span></label></div>
+            <div class="chart-legend"><span><i class="legend-dot legend-total"></i>Total employees</span><span><i class="legend-dot legend-active"></i>Active employees</span><span><i class="legend-dot legend-new"></i>New employees</span></div>
+            <div class="line-chart-wrap"><svg id="employeeChart" class="line-chart" viewBox="0 0 720 190" role="img" aria-label="Employee totals over time"></svg></div>
+          </section>
+          <section class="panel department-panel" aria-labelledby="departmentTitle">
+            <div class="panel-heading"><div><span class="section-kicker">TEAM STRUCTURE</span><h2 id="departmentTitle">Employees by department</h2><p>People across your organization.</p></div><button class="text-action" type="button" data-view-link="departments">View all <span>→</span></button></div>
+            <div class="department-bars" id="departmentBars"></div>
+          </section>
+          <section class="panel recent-panel" aria-labelledby="recentTitle">
+            <div class="panel-heading"><div><span class="section-kicker">PEOPLE DIRECTORY</span><h2 id="recentTitle">Recent employees</h2><p>Your latest employee records.</p></div><button class="text-action" type="button" data-view-link="employees">View all <span>→</span></button></div>
+            <div class="table-wrap recent-table-wrap"><table class="data-table"><thead><tr><th>EMPLOYEE</th><th>EMPLOYEE ID</th><th>DEPARTMENT</th><th>POSITION</th><th>STATUS</th><th>JOIN DATE</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="recentRows"><tr><td colspan="7" class="loading-cell">Loading employees…</td></tr></tbody></table></div>
+          </section>
+          <section class="panel quick-panel" aria-labelledby="quickTitle">
+            <div class="panel-heading compact-heading"><div><span class="section-kicker">SHORTCUTS</span><h2 id="quickTitle">Quick actions</h2></div></div>
+            <div class="quick-actions">
+              <button class="quick-action" data-quick="add" type="button"><span class="quick-icon">＋</span><span>Add employee</span><b>→</b></button>
+              <button class="quick-action" data-quick="departments" type="button"><span class="quick-icon">▦</span><span>Create department</span><b>→</b></button>
+              <button class="quick-action" data-quick="attendance" type="button"><span class="quick-icon">◷</span><span>Manage attendance</span><b>→</b></button>
+              <button class="quick-action" data-quick="leave" type="button"><span class="quick-icon">▣</span><span>Review leave</span><b>→</b></button>
+              <button class="quick-action" data-quick="reports" type="button"><span class="quick-icon">⇩</span><span>Generate report</span><b>→</b></button>
+            </div>
+          </section>
+          <section class="panel attendance-panel" aria-labelledby="attendanceTitle">
+            <div class="panel-heading"><div><span class="section-kicker">TODAY · TEAM SNAPSHOT</span><h2 id="attendanceTitle">Attendance overview</h2><p>Sample attendance breakdown.</p></div><span class="snapshot-tag">DEMO</span></div>
+            <div class="attendance-content"><div class="donut-chart" role="img" aria-label="Attendance breakdown: present 82%, late 6%, absent 4%, on leave 8%"><div class="donut-center"><strong>82%</strong><small>Present</small></div></div><div class="attendance-legend"><div><i class="att-present"></i><span>Present</span><strong>82%</strong></div><div><i class="att-late"></i><span>Late</span><strong>6%</strong></div><div><i class="att-absent"></i><span>Absent</span><strong>4%</strong></div><div><i class="att-leave"></i><span>On leave</span><strong>8%</strong></div></div></div>
+            <button class="panel-link" data-view-link="attendance" type="button">View attendance <span>→</span></button>
+          </section>
+          <section class="panel activity-panel" aria-labelledby="activityTitle">
+            <div class="panel-heading"><div><span class="section-kicker">TEAM UPDATES</span><h2 id="activityTitle">Recent activity</h2></div><button class="icon-button small-more" type="button" aria-label="More activity options">···</button></div>
+            <div class="activity-list" id="activityList"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view-panel" id="employeesView" data-panel="employees" hidden>
+        <div class="page-heading directory-heading"><div><div class="eyebrow">PEOPLE DIRECTORY</div><h1>Employees</h1><p class="page-subtitle">Manage and organize your workforce.</p></div><button class="button button-primary" id="directoryAddButton" type="button"><span class="button-plus">＋</span> Add employee</button></div>
+        <section class="panel directory-card" aria-labelledby="directoryTitle">
+          <div class="directory-toolbar"><div class="directory-title"><h2 id="directoryTitle">All employees</h2><span class="record-pill" id="recordCount">0</span></div><div class="directory-actions"><button class="button button-secondary export-button" id="exportButton" type="button">⇩ Export CSV</button><div class="view-toggle" role="group" aria-label="Choose employee view"><button class="selected" data-layout="table" type="button">▤ Table</button><button data-layout="grid" type="button">▦ Grid</button></div></div></div>
+          <div class="directory-filters"><label class="search-box"><span class="search-glyph">⌕</span><input id="searchInput" type="search" placeholder="Search by name, employee ID..." autocomplete="off" aria-label="Search employees"></label><label class="select-wrap"><span class="sr-only">Filter by department</span><select id="departmentFilter"><option value="">All departments</option></select><span class="select-chevron">⌄</span></label><label class="select-wrap"><span class="sr-only">Filter by status</span><select id="statusFilter"><option value="">Any status</option><option>Active</option><option>On Leave</option><option>Inactive</option></select><span class="select-chevron">⌄</span></label><label class="select-wrap"><span class="sr-only">Filter by position</span><select id="positionFilter"><option value="">All positions</option></select><span class="select-chevron">⌄</span></label><label class="select-wrap date-filter"><span class="sr-only">Filter by joining date from</span><input type="date" id="joinDateFilter" aria-label="Joined after date"></label></div>
+          <div class="table-wrap directory-table-wrap" id="directoryTableWrap"><table class="data-table directory-table"><thead><tr><th>EMPLOYEE</th><th>EMPLOYEE ID</th><th>DEPARTMENT</th><th>POSITION</th><th>STATUS</th><th>JOIN DATE</th><th>ACTIONS</th></tr></thead><tbody id="employeeRows"><tr><td colspan="7" class="loading-cell">Loading employees…</td></tr></tbody></table></div>
+          <div class="employee-grid" id="employeeGrid" hidden></div>
+          <div class="table-footer"><span id="tableSummary">Showing employees</span><span class="footer-decoration"><i></i><i></i><i></i></span></div>
+        </section>
+      </section>
+
+      <section class="view-panel" id="departmentsView" data-panel="departments" hidden>
+        <div class="page-heading"><div><div class="eyebrow">ORGANIZATION</div><h1>Departments</h1><p class="page-subtitle">Explore employee distribution across your teams.</p></div></div><section class="panel departments-page-panel"><div class="panel-heading"><div><span class="section-kicker">TEAM STRUCTURE</span><h2>Department directory</h2><p>Current employee totals by department.</p></div></div><div class="department-bars department-bars-large" id="departmentPageBars"></div></section>
+      </section>
+
+      <section class="view-panel" id="attendanceView" data-panel="attendance" hidden>
+        <div class="page-heading"><div><div class="eyebrow">WORKPLACE OPERATIONS</div><h1>Attendance</h1><p class="page-subtitle">A sample view of employee attendance distribution.</p></div></div><section class="panel attendance-page-panel"><div class="panel-heading"><div><span class="section-kicker">TODAY · TEAM SNAPSHOT</span><h2>Attendance overview</h2><p>Illustrative attendance percentages for the organization.</p></div><span class="snapshot-tag">DEMO DATA</span></div><div class="attendance-content attendance-large"><div class="donut-chart"><div class="donut-center"><strong>82%</strong><small>Present</small></div></div><div class="attendance-legend"><div><i class="att-present"></i><span>Present</span><strong>82%</strong></div><div><i class="att-late"></i><span>Late</span><strong>6%</strong></div><div><i class="att-absent"></i><span>Absent</span><strong>4%</strong></div><div><i class="att-leave"></i><span>On leave</span><strong>8%</strong></div></div></div></section></section>
+
+      <section class="view-panel" id="genericView" data-panel="generic" hidden><div class="page-heading"><div><div class="eyebrow">PEOPLE OPERATIONS</div><h1 id="genericTitle">Workspace</h1><p class="page-subtitle" id="genericSubtitle">This workspace area is ready to connect to your organization’s policies and records.</p></div></div><section class="panel placeholder-panel"><span class="placeholder-icon">✳</span><h2 id="placeholderTitle">Coming soon</h2><p id="placeholderText">This area is prepared for future employee-management workflows. No sample records are presented as real company data.</p><button class="button button-secondary" data-view-link="employees" type="button">Return to employee directory <span>→</span></button></section></section>
+
+      <section class="view-panel" id="profileView" data-panel="profile" hidden>
+        <div class="profile-breadcrumb"><button type="button" id="backToEmployees">← Employees</button><span>/</span><strong>Employee profile</strong></div>
+        <section class="panel employee-profile-header" id="employeeProfileHeader"></section>
+        <nav class="profile-tabs" aria-label="Employee profile sections"><button class="active" data-profile-tab="overview">Overview</button><button data-profile-tab="personal">Personal information</button><button data-profile-tab="employment">Employment</button><button data-profile-tab="attendance">Attendance</button><button data-profile-tab="leave">Leave</button><button data-profile-tab="payroll">Payroll</button><button data-profile-tab="performance">Performance</button></nav>
+        <div id="profileContent" class="profile-content"></div>
+      </section>
+
+      <footer class="page-footer"><span><strong>PeopleFirst Employee Management System</strong><small>© 2026 PeopleFirst, Inc.</small></span><span>Designed &amp; Developed by Vedant Pokale</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="employeeModal" hidden>
+    <section class="modal employee-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <div class="modal-heading"><div><span class="modal-kicker">EMPLOYEE RECORD</span><h2 id="modalTitle">Add employee</h2><p id="modalDescription">Add a new employee to your organization.</p></div><button class="icon-button close-modal" id="closeModalButton" type="button" aria-label="Close dialog">×</button></div>
+      <form id="employeeForm" novalidate>
+        <section class="form-section"><div class="form-section-heading"><span class="form-section-icon">◎</span><div><h3>Personal information</h3><p>Basic identity and contact details.</p></div></div><div class="form-grid">
+          <label class="form-field"><span>First name <b>*</b></span><input name="firstName" required maxlength="60" autocomplete="given-name" placeholder="e.g. Jamie"><small class="field-error"></small></label>
+          <label class="form-field"><span>Last name <b>*</b></span><input name="lastName" required maxlength="60" autocomplete="family-name" placeholder="e.g. Smith"><small class="field-error"></small></label>
+          <label class="form-field"><span>Work email <b>*</b></span><input name="email" type="email" required maxlength="160" autocomplete="email" placeholder="name@company.com"><small class="field-error"></small></label>
+          <label class="form-field"><span>Phone number</span><input name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="+1 (555) 000-0000"><small class="field-error"></small></label>
+          <label class="form-field"><span>Date of birth</span><input name="dateOfBirth" type="date"><small class="field-error"></small></label>
+        </div></section>
+        <section class="form-section"><div class="form-section-heading"><span class="form-section-icon">⌘</span><div><h3>Employment information</h3><p>Role, team and employment details.</p></div></div><div class="form-grid">
+          <label class="form-field"><span>Employee ID</span><input name="employeeCode" maxlength="24" placeholder="Generated automatically"><small class="field-error"></small></label>
+          <label class="form-field"><span>Department <b>*</b></span><input name="department" list="departmentOptions" required maxlength="80" placeholder="e.g. Engineering"><datalist id="departmentOptions"></datalist><small class="field-error"></small></label>
+          <label class="form-field"><span>Position <b>*</b></span><input name="jobTitle" list="positionOptions" required maxlength="80" placeholder="e.g. Software Engineer"><datalist id="positionOptions"></datalist><small class="field-error"></small></label>
+          <label class="form-field"><span>Manager</span><input name="manager" maxlength="120" placeholder="Manager name"><small class="field-error"></small></label>
+          <label class="form-field"><span>Joining date <b>*</b></span><input name="startDate" type="date" required><small class="field-error"></small></label>
+          <label class="form-field"><span>Employment type</span><select name="employmentType"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Intern</option></select><small class="field-error"></small></label>
+          <label class="form-field"><span>Status <b>*</b></span><select name="status" required><option value="Active">Active</option><option value="On Leave">On Leave</option><option value="Inactive">Inactive</option></select><small class="field-error"></small></label>
+          <label class="form-field"><span>Annual salary (USD) <b>*</b></span><div class="input-prefix"><span>$</span><input name="salary" type="number" required min="0" max="100000000" step="1000" placeholder="75,000"></div><small class="field-error"></small></label>
+        </div></section>
+        <section class="form-section"><div class="form-section-heading"><span class="form-section-icon">⌖</span><div><h3>Contact information</h3><p>Optional home address details.</p></div></div><div class="form-grid">
+          <label class="form-field form-span"><span>Street address</span><input name="address" maxlength="120" autocomplete="street-address" placeholder="Street and number"><small class="field-error"></small></label>
+          <label class="form-field"><span>City</span><input name="city" maxlength="120" autocomplete="address-level2" placeholder="City"><small class="field-error"></small></label>
+          <label class="form-field"><span>State / region</span><input name="state" maxlength="120" autocomplete="address-level1" placeholder="State or region"><small class="field-error"></small></label>
+          <label class="form-field"><span>Country</span><input name="country" maxlength="120" autocomplete="country-name" placeholder="Country"><small class="field-error"></small></label>
+        </div></section>
+        <div class="form-message" id="formMessage" role="alert" hidden></div>
+        <div class="modal-actions"><button class="button button-secondary" id="cancelModalButton" type="button">Cancel</button><button class="button button-primary" type="submit" id="saveEmployeeButton">Save employee <span>→</span></button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
